@@ -1,0 +1,219 @@
+
+/*-----------------------------------*\
+  #CUSTOM PROPERTY
+\*-----------------------------------*/
+
+
+/*-----------------------------------*\
+  #RESET
+\*-----------------------------------*/
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+li { list-style: none; }
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+a,
+img,
+span,
+ion-icon { display: block; }
+
+img { height: auto; }
+
+ion-icon { pointer-events: none; }
+
+
+/*-----------------------------------*\
+  #REUSED STYLE
+\*-----------------------------------*/
+
+.container { 
+    padding-inline: 5px;
+    margin-bottom: 40px;
+    margin-left: 205px; 
+}
+
+.section { padding-block: 80px; margin-left:0%; }
+
+.bg-dark {
+  background-color: hsl(210, 26%, 11%);
+  color:  hsl(212, 9%, 67%);;
+}
+
+.has-bg-image {
+  background-repeat: no-repeat;
+  background-position: top left;
+}
+
+.h2,
+.h3 {
+  font-family:'Catamaran', sans-serif;
+  line-height: 1.25;
+  color: hsl(210, 26%, 11%);
+  font-weight: 800;
+}
+
+.h2 { font-size: 3rem; }
+
+.h3 { font-size: 2rem; }
+
+.section-subtitle {
+  font-family: 'Catamaran', sans-serif;
+  font-weight: bold;
+  font-size: 22px;
+  text-transform: uppercase;
+  max-width: max-content;
+  background-color: hsla(12, 98%, 52%, 0.1);
+  color: hsl(12, 98%, 52%);
+  padding: 8px 20px;
+  border-radius: 8px;
+}
+
+.section-title { margin-block: 18px 35px; }
+
+.text-center { text-align: center; }
+
+.img-holder {
+  aspect-ratio: var(--width) / var(--height);
+  background-color: hsl(0, 0%, 80%);;
+  overflow: hidden;
+}
+
+.has-scrollbar {
+  display: flex;
+  gap: 25px;
+  overflow-x: auto;
+  padding-block-end: 30px;
+  scroll-snap-type: inline mandatory;
+}
+
+.scrollbar-item {
+  min-width: 100%;
+  scroll-snap-align: start;
+  min-width: calc(33.33% - 20px);
+}
+
+
+
+
+/*-----------------------------------*\
+  #CLASS
+\*-----------------------------------*/
+
+.class { padding-block-start: calc(80px + 250px); }
+
+.class .section-subtitle { margin-inline: auto; }
+
+.class .section-title { color: hsl(0, 0%, 100%);; }
+
+.class-card {
+  background-color: hsl(0, 0%, 100%);;
+  border-radius: 10px;
+  height: 100%;
+  overflow: hidden;
+}
+
+.class-card .card-banner img { transition: 0.25 ease; }
+
+.class-card:is(:hover, :focus-within) .card-banner img {
+  transform: scale(1.1);
+}
+
+.class-card .card-content { padding: 24px; }
+
+.class-card .title-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.class-card .title-icon {
+  padding-inline-end: 20px;
+  margin-inline-end: 20px;
+  min-width: max-content;
+  border-inline-end: 1px solid hsl(0, 0%, 88%);;
+}
+
+.class-card .card-title { transition: 0.25s ease; }
+
+.class-card .card-title:is(:hover, :focus) { color: hsl(12, 98%, 52%); }
+
+.class-card .card-text {
+  color: hsl(0, 0%, 47%);
+  font-size: 1.3rem;
+  margin-block: 16px 12px;
+}
+
+.class-card .progress-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Catamaran', sans-serif;
+  color: hsl(210, 26%, 11%);
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-block-end: 8px;
+}
+
+.class-card .progress-bg {
+  background-color: hsla(12, 98%, 52%, 0.1);
+  border-radius: 50px;
+}
+
+.class-card .progress-bar {
+  background-color: hsl(12, 98%, 52%);
+  height: 10px;
+  border-radius: inherit;
+}
+
+
+/**
+ * responsive for larger than 1200px screen
+ */
+  /**
+   * REUSED STYLE
+   */
+
+  .container{ max-width: 1140px; }
+
+  .section-subtitle { font-size: 2rem,2.2rem; }
+
+  .has-scrollbar { gap: 30px; }
+
+  /**
+   * CLASS
+   */
+
+  :is(.class-card, .blog-card) .card-content { padding: 30px; }
+
+
+
+
+  @media screen and (max-width: 420px){
+    .section{
+      padding-block: 80px; 
+      margin-left: 0%;
+      margin-bottom: -200px;
+    }
+    .container{
+      max-width: 448px;
+      margin-bottom: 14px;
+      margin-left: 16px;
+      padding-inline: 5px;
+    }
+    .scrollbar-item{
+      min-width: calc(89.33% - 20px);
+    }
+    img{ height: 87%;}
+    .class{padding-block-start: calc(-56px + 250px);}
+  }
+  

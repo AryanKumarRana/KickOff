@@ -1,0 +1,219 @@
+things left to update in this website:----
+
+0. animation using macromedia flash 8,
+1. chatbot, 
+5. responsive, 
+7. google/facebook login(oAuth)
+8. Live score Api,
+9. fantasy games.
+
+ 
+ 
+ 
+img{
+  width: 300px;
+  animation: rotation 6s infinite linear;
+}
+ 
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+        <?php
+        if ($database = "users") {
+          echo $_SESSION['First_Name'];
+        }
+        else {
+          echo $user_info['first_name'];
+        }
+        ?>"
+
+echo $user_info['first_name]
+echo $_SESSION['First_Name']
+
+
+
+
+
+<div class = "app-container" style="margin-top: 1rem !important; margin-bottom: 1rem !important;">
+  <h1 class = "heading" style="text-align: center !important;"> News App </h1>
+  <br><br>
+  <div class = "row" style="display: flex; flex-wrap: wrap; margin-top: -1; margin-right: -.5; margn-left: -.5;">
+    <div class = "col" style="flex: 1 0;">
+      <div class = "app" style="width: 18rem;">
+        <img src="<?=$value['urlToImage']?>" style="height: 16rem; width: 18rem;" class="app-img-top" alt="..."/>
+        <div class = "app-body">
+          <h5 class = "app-title"><?=$value['title']?>...</h5>
+          <p class = "app-text"><?=$value['description']?>...</p>
+          <a href="<?=$value['url']?>" rel="noreferrer" class="btn btn-primary">Readmore..</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+ 
+ 
+ Live match updates: Integrate a live score API to display real-time scores, match details, and updates.
+ Fantasy football: Create a fantasy football section where users can create their own teams and compete with others. 
+ Player profiles: INclude detailed profiles of popular football players., including their career stats and achievements.
+ Social media integration: Allow users to share content from your website on social media platforms.
+ Stadium information: Provide information about famous football stadiums, including seating capacity, istory, and notable events. 
+ Match highlights: Embed video highlights of recent football matches to keep users engaged.
+ Forum or community section: Create a space where football enthusiasts can discuss matches, players, and share their opinions.
+ Betting odds and predictions: include a section that displays betting odds and allows users to make predictions for upcoming matches.
+
+
+
+ backend functionality :-
+
+ User management: Implement a user management system with features like user roles, passoword reset, and email verification.
+ Database optimization: Optimize your MySWL queries and database structure for improved performance and efficiency.
+ Api integration: INtegrate additional APIs to fetch data such as players statistics, team information, or matchn schedules.
+ Data caching: Implement caching mechanisms to improve the speed and responsiveness of your website.
+ Security measures: Enhance the security of your website by implementing measueres like imput validation, encryption, and protection against common web vulnerabilities.
+ Error handling and logging: Implementrobust error handling and logging mechanisms to track and troubleshoot issues effectively.
+ Performance monitoring: Set up tools to monitor server performance and identify areas for optimization.
+ Automated testing: implement automated testing frameworks to ensure the stability and reliability of your website.
+
+
+
+J.A.R.V.I.S.
+1.Speech recognition: Use a library like CMU Sphinx or Google Cloud Speech-to-Text API to convert spoken words into Text
+2.Natural language understanding: Utilize a library like standford NLP or Apache OpenNLP to analyze and understand the meaning of the user's input.
+3.Task execution: Implement the logic to perform various tasks based on user commands, such as fetching information from APIs, controlling devices, or executing system commands.
+4.Text-to-speech: Use a library like FreeTTS or Google Cloud Text-to-Speech API to convert text into spoken words.
+
+short example code:
+import java.util.Scanner;
+public class JARVIS{
+    public static void main(String[] args){
+        Scanner scanner = new Scanner(System.in);
+
+        while(true){
+            System.out.print("Listening...");
+            String command = scanner.nextLine().toLowerCase();
+
+            if(command.contains("hello")){
+                System.out.println("Hello! How can i assist you today?");
+            }
+            else if (command.contains("time"))
+            {
+                //Add code to get the current time and display it}
+                else if(command.contains("weather")){
+                    //Add code to get the weather information and display it}
+                else{
+                    System.out.println("i'm sorry, I didn't understand that command.");
+                }
+                }
+            }
+            }
+            
+
+
+
+
+
+
+
+
+
+login.php
+<?php
+require_once 'config.php';
+
+if(isset($_SESSION['user_token'])) {
+  header("Location: welcome.php");
+}
+
+?>
+
+
+     <a href= <?= $client->createAuthUrl() ?>>
+            <div style="background-color: #358fef; text-decoration: none; height: 46px; width: 312px; border: 1px solid #358fef; border-radius: 4px; display: flex; flex-direction: row;" >
+                <div style="height: 44px; width: 47px; border: 2px solid #358fef; background:white; display: flex; flex-direction: row; align-items: center; justify-content: center;">
+                    <img src="main_style\images\google.png" style="height: 31px; width: 31px; display: flex; flex-direction: row; justify-content: center; align-items: center;">
+                </div>
+                <div style="color: white; font-size: 20px; display: flex; flex-direction: row; padding-top: 8px; padding-left: 33px;">
+                    Log in with Google
+                </div>
+            </div>
+        </a>   
+
+
+
+
+welcome.php
+
+
+
+<?php
+require_once 'config.php';
+
+// authenticate code from Google OAuth Flow
+if (isset($_GET['code'])) {
+  $token = $client->fetchAccessTokenWithAuthCode($_GET['code']);
+  $client->setAccessToken($token['access_token']);
+
+  // get profile info
+  $google_oauth = new Google_Service_Oauth2($client);
+  $google_account_info = $google_oauth->userinfo->get();
+  $userinfo = [
+    'email' => $google_account_info['email'],
+    'first_name' => $google_account_info['givenName'],
+    'last_name' => $google_account_info['familyName'],
+    'full_name' => $google_account_info['name'],
+    'picture' => $google_account_info['picture'],
+    'verifiedEmail' => $google_account_info['verifiedEmail'],
+    'token' => $google_account_info['id'],
+  ];
+
+  // checking if user is already exists in database
+  $sql = "SELECT * FROM users WHERE email ='{$userinfo['email']}'";
+  $result = mysqli_query($conn, $sql);
+  if (mysqli_num_rows($result) > 0) {
+    // user is exists
+    $userinfo = mysqli_fetch_assoc($result);
+    $token = $userinfo['token'];
+  } else {
+    // user is not exists
+    $sql = "INSERT INTO `youtube_google_login`.`users` (`email`, `first_name`, `last_name`, `full_name`, `picture`, `verifiedEmail`, `token`)
+     VALUES ('{$userinfo['email']}', '{$userinfo['first_name']}', '{$userinfo['last_name']}', '{$userinfo['full_name']}', '{$userinfo['picture']}', '{$userinfo['verifiedEmail']}', '{$userinfo['token']}')";
+    $result = mysqli_query($conn, $sql);
+    if ($result) {
+      $token = $userinfo['token'];
+    } else {
+      echo "User is not created";
+    }
+  }
+
+  // save user data into session
+  $_SESSION['user_token'] = $token;
+} else {
+  if (!isset($_SESSION['user_token'])) {
+    header("Location: login.php");
+    die();
+  }
+
+  // checking if user is already exists in database
+  $sql = "SELECT * FROM users WHERE token ='{$_SESSION['user_token']}'";
+  $result = mysqli_query($conn, $sql);
+  if (mysqli_num_rows($result) > 0) {
+    // user is exists
+    $userinfo = mysqli_fetch_assoc($result);
+  }
+}
+
+
+?>
+
+
+
+
+      <p>"Welcome - <?php echo $userinfo['first_name']?>"</p>
+
+            
