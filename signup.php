@@ -55,12 +55,12 @@ if(isset($_POST["send"])){
     $mail->Host = 'smtp.gmail.com';
     $mail->SMTPAuth = true;
     $mail->CharSet = 'UTF-8';
-    $mail->Username = 'aryankumar82186@gmail.com';
-    $mail->Password = 'ixrf dbtm pqpn vocz ';
+    $mail->Username = '';
+    $mail->Password = '';
     $mail->SMTPSecure = 'tls';
     $mail->Port = 587;
 
-    $mail->setFrom('aryankumar82186@gmail.com');
+    $mail->setFrom('');
     $mail->addAddress($_POST["username"]);
     $mail->isHTML(true);
     $mail->Subject = "Kickoff";
